@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useState } from 'react'
 
 export const useField = (name) => {
   const [value, setValue] = useState('')
@@ -15,6 +15,6 @@ export const useField = (name) => {
     name,
     value,
     onChange,
-    reset
+    reset,
   }
 }

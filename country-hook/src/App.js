@@ -11,7 +11,7 @@ const useField = (type) => {
   return {
     type,
     value,
-    onChange
+    onChange,
   }
 }
 
@@ -23,7 +23,7 @@ const useCountry = (name) => {
 
     axios
       .get(`https://studies.cs.helsinki.fi/restcountries/api/name/${name}`)
-      .then(response => {
+      .then((response) => {
         const result = response.data
 
         const countryToSet = {
@@ -31,15 +31,13 @@ const useCountry = (name) => {
             name: result.name.common,
             capital: result.capital[0],
             population: result.population,
-            flag: result.flags.png
+            flag: result.flags.png,
           },
-          found: true
+          found: true,
         }
 
         return setCountry(countryToSet)
-      }
-
-      )
+      })
       .catch(() => {
         setCountry({ found: false })
       })
@@ -54,11 +52,7 @@ const Country = ({ country }) => {
   }
 
   if (!country.found) {
-    return (
-      <div>
-        not found...
-      </div>
-    )
+    return <div>not found...</div>
   }
 
   return (
@@ -66,7 +60,11 @@ const Country = ({ country }) => {
       <h3>{country.data.name} </h3>
       <div>capital {country.data.capital} </div>
       <div>population {country.data.population}</div>
-      <img src={country.data.flag} height='100' alt={`flag of ${country.data.name}`} />
+      <img
+        src={country.data.flag}
+        height="100"
+        alt={`flag of ${country.data.name}`}
+      />
     </div>
   )
 }
